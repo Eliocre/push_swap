@@ -12,7 +12,7 @@ SRCS = push_swap.c
 HEADERS = ./libft/include/libft.h ./libft/include/printf.h \
 		./libft/include/get_next_line.h \
 
-OBJS = $(addprefix $(SO_LONG_DIR), $(SRCS:.c=.o))
+OBJS = $(addprefix $(SRC_DIR), $(SRCS:.c=.o))
 
 .SILENT : 
 
@@ -20,11 +20,12 @@ all : $(NAME)
 
 $(NAME) : $(OBJS)
 	@echo "$(Red)Compilation de libft ...${NC}" 
+# @echo "$(Red)Check de la norme :${NC}"
+# @norminette
 	$(MAKE) --no-print-directory -C $(LIBFT_DIR)
-	@echo "$(Red)Compilation de minilibx ...${NC}" 
-	@echo -n "$(Red)Compilation de so_long ...${NC}"
-	$(CC) $^ $(XFLAGS) $(CFLAGS) $(LIBFT_DIR)libft.a -o $(NAME) && sleep 0.1
-	@echo "$(Green)\r-----Compilation finie-----${NC}" 
+	@echo -n "$(Red)Compilation de push_swap ...${NC}"
+	$(CC) $^ $(CFLAGS) $(LIBFT_DIR)libft.a -o $(NAME) && sleep 0.3
+	@echo "$(Green)\r-----Compilation finie------${NC}" 
 
 sus:all
 	@echo "$(IRed)           ⣠⣤⣤⣤⣤⣤⣶⣦⣤⣄⡀        $(NC)"
@@ -50,12 +51,10 @@ sus:all
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean :
-	@cd  $(MLBX_DIR) && $(MAKE) --no-print-directory clean
 	@cd $(LIBFT_DIR) && $(MAKE) --no-print-directory clean
 	@rm -rf $(OBJS) $(OBJSBONUS)
 
 fclean :
-	cd $(MLBX_DIR) && $(MAKE) --no-print-directory clean
 	cd $(LIBFT_DIR) && $(MAKE) --no-print-directory fclean
 	rm -rf $(OBJS) $(OBJSBONUS) $(NAME) $(NAME_BONUS)
 
