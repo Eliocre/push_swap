@@ -6,13 +6,14 @@ CFLAGS = -Wall -Wextra -Werror -g3
 
 SRC_DIR = src/
 LIBFT_DIR = $(SRC_DIR)libft/
+PS_DIR = $(SRC_DIR)push_swap/
 
 SRCS = push_swap.c
 
 HEADERS = ./libft/include/libft.h ./libft/include/printf.h \
 		./libft/include/get_next_line.h \
 
-OBJS = $(addprefix $(SRC_DIR), $(SRCS:.c=.o))
+OBJS = $(addprefix $(PS_DIR), $(SRCS:.c=.o))
 
 .SILENT : 
 
