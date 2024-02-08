@@ -8,8 +8,8 @@ SRC_DIR = src/
 LIBFT_DIR = $(SRC_DIR)libft/
 PS_DIR = $(SRC_DIR)push_swap/
 
-SRCS = push_swap.c
-
+SRCS = push_swap.c checker.c stack_free.c stack_utils.c swap.c rotate.c push.c \
+		reverse_rotate.c
 HEADERS = ./libft/include/libft.h ./libft/include/printf.h \
 		./libft/include/get_next_line.h \
 
