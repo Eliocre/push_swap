@@ -4,29 +4,34 @@ NAME = push_swap
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3
 
+OBJS_DIR = .obj/
 SRC_DIR = src/
 LIBFT_DIR = $(SRC_DIR)libft/
 PS_DIR = $(SRC_DIR)push_swap/
 
 SRCS = push_swap.c checker.c stack_free.c stack_utils.c swap.c rotate.c push.c \
 		reverse_rotate.c
-HEADERS = ./libft/include/libft.h ./libft/include/printf.h \
-		./libft/include/get_next_line.h \
+HEADERS = ./src/libft/include/libft.h ./src/libft/include/ft_printf.h \
+		./src/libft/include/get_next_line.h include/push_swap.h\
 
-OBJS = $(addprefix $(PS_DIR), $(SRCS:.c=.o))
+OBJS = $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
 
 .SILENT : 
 
-all : $(NAME)
+all : libft obj $(NAME)
+
+obj : 
+	@mkdir -p $(OBJS_DIR)
+
+libft : 
+	@make --no-print-directory -C $(LIBFT_DIR)	
 
 $(NAME) : $(OBJS)
-	@echo "$(Red)Compilation de libft ...${NC}" 
 # @echo "$(Red)Check de la norme :${NC}"
 # @norminette
-	$(MAKE) --no-print-directory -C $(LIBFT_DIR)
-	@echo -n "$(Red)Compilation de push_swap ...${NC}"
+	@echo "$(Red)Compilation de push_swap ...${NC}"
 	$(CC) $^ $(CFLAGS) $(LIBFT_DIR)libft.a -o $(NAME) && sleep 0.3
-	@echo "$(Green)\r-----Compilation finie------${NC}" 
+	@echo "$(Green)\r------Compilation finie !-------${NC}" 
 
 sus:all
 	@echo "$(IRed)           ⣠⣤⣤⣤⣤⣤⣶⣦⣤⣄⡀        $(NC)"
@@ -48,21 +53,21 @@ sus:all
 	@echo "$(White)         ░▀▀█░█░█░▀▀█$(NC)"
 	@echo "$(White)         ░▀▀▀░▀▀▀░▀▀▀$(NC)"
 
-%.o : %.c $(HEADERS) Makefile
+$(OBJS_DIR)%.o : $(PS_DIR)%.c $(HEADERS) Makefile $(LIBFT_DIR)Makefile
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean :
 	@cd $(LIBFT_DIR) && $(MAKE) --no-print-directory clean
-	@rm -rf $(OBJS) $(OBJSBONUS)
+	@rm -rf $(OBJS_DIR)
 
 fclean :
 	cd $(LIBFT_DIR) && $(MAKE) --no-print-directory fclean
-	rm -rf $(OBJS) $(OBJSBONUS) $(NAME) $(NAME_BONUS)
+	rm -rf $(OBJS_DIR) $(NAME)
 
 re : fclean
 	$(MAKE) all
 
-.PHONY : all clean fclean re bonus
+.PHONY : all clean fclean re obj sus libft
 
 # COLORS =======================================================================
 

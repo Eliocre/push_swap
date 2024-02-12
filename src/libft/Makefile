@@ -39,15 +39,16 @@ GNL = $(addprefix $(GNL_OBJS), $(GNL_SRCS:.c=.o))
 
 .SILENT:
 
-all:
-	@echo -n "$(Red)Compilation en cours .${NC}" 
-	@mkdir -p $(OBJS_DIR) $(LIBFT_OBJS) $(PRINTF_OBJS) $(GNL_OBJS) && sleep 0.2
-	@echo -n "$(Purple)\rCompilation en cours ..${NC}" 
-	@$(MAKE) $(NAME) && sleep 0.1
-	@echo -n "$(Blue)\rCompilation en cours ...${NC}" && sleep 0.5
-	@echo "$(Green)\r------Compilation finie !-------${NC}"
+all: obj $(NAME)
+
+obj : 
+	@mkdir -p $(OBJS_DIR) $(LIBFT_OBJS) $(PRINTF_OBJS) $(GNL_OBJS)
 
 $(NAME): $(LIBFT) $(PRINTF) $(GNL)
+	@echo -n "$(Red)Compilation en cours .${NC}"
+	@echo -n "$(Purple)\rCompilation en cours ..${NC}"  && sleep 0.2
+	@echo -n "$(Blue)\rCompilation en cours ...${NC}" && sleep 0.5
+	@echo "$(Green)\r------Compilation de libft finie !-------${NC}"
 	ar -rc $@ $^
 
 $(LIBFT_OBJS)%.o: $(LIBFT_DIR)%.c $(HEADER) Makefile
