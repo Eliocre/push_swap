@@ -6,7 +6,7 @@
 /*   By: eandre <eandre@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:25:51 by eandre            #+#    #+#             */
-/*   Updated: 2024/02/08 18:37:39 by eandre           ###   ########.fr       */
+/*   Updated: 2024/02/13 18:12:23 by eandre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	ft_stacksize(t_stack *stack)
 	int	i;
 
 	i = 0;
-	while (stack != 0)
+	while (stack)
 	{
 		stack = stack->next;
 		i++;

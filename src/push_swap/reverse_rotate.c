@@ -6,7 +6,7 @@
 /*   By: eandre <eandre@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 20:28:03 by eandre            #+#    #+#             */
-/*   Updated: 2024/02/08 21:05:11 by eandre           ###   ########.fr       */
+/*   Updated: 2024/02/13 14:01:03 by eandre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,13 @@ static void	reverse_rotate_(t_stack **lst)
 	t_stack	*last;
 	t_stack	*beforelast;
 
-	last = ft_stacklast(*lst);
-	beforelast = ft_stackbeforelast(*lst);
-	ft_stackadd_front(lst, last);
-	beforelast->next = NULL;
+	if (*lst && (*lst)->next)
+	{
+		last = ft_stacklast(*lst);
+		beforelast = ft_stackbeforelast(*lst);
+		ft_stackadd_front(lst, last);
+		beforelast->next = NULL;
+	}
 }
 
 void	reverse_rotate_a(t_stack **lsta)

@@ -6,12 +6,11 @@
 /*   By: eandre <eandre@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:34:18 by eandre            #+#    #+#             */
-/*   Updated: 2024/02/08 18:38:45 by eandre           ###   ########.fr       */
+/*   Updated: 2024/02/13 15:33:23 by eandre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
-#include <limits.h>
 
 int	ft_atoi_ps(const char *str)
 {

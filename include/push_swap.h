@@ -6,7 +6,7 @@
 /*   By: eandre <eandre@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 13:59:15 by eandre            #+#    #+#             */
-/*   Updated: 2024/02/07 14:18:27 by eandre           ###   ########.fr       */
+/*   Updated: 2024/02/13 15:33:29 by eandre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 # include "../src/libft/include/libft.h"
 # include <unistd.h>
+# include <limits.h>
 
 # define TRUE 0
 # define FALSE 1
