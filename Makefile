@@ -9,8 +9,9 @@ SRC_DIR = src/
 LIBFT_DIR = $(SRC_DIR)libft/
 PS_DIR = $(SRC_DIR)push_swap/
 
-SRCS = push_swap.c checker.c stack_free.c stack_utils.c swap.c rotate.c push.c \
-		reverse_rotate.c
+SRCS = push_swap.c arg_checker.c stack_free.c stack_utils.c swap.c rotate.c push.c \
+		reverse_rotate.c find.c get_cheapest.c sort.c init.c stack_a.c stack_b.c \
+		moves.c
 HEADERS = ./src/libft/include/libft.h ./src/libft/include/ft_printf.h \
 		./src/libft/include/get_next_line.h include/push_swap.h\
 
@@ -27,13 +28,13 @@ libft :
 	@make --no-print-directory -C $(LIBFT_DIR)	
 
 $(NAME) : $(OBJS)
-# @echo "$(Red)Check de la norme :${NC}"
-# @norminette
+	@echo "$(Red)Check de la norme :${NC}"
+	@norminette.exe $(SRC_DIR) $(HEADERS)
 	@echo "$(Red)Compilation de push_swap ...${NC}"
 	$(CC) $^ $(CFLAGS) $(LIBFT_DIR)libft.a -o $(NAME) && sleep 0.3
 	@echo "$(Green)\r------Compilation finie !-------${NC}" 
 
-sus:all
+sus:
 	@echo "$(IRed)           ⣠⣤⣤⣤⣤⣤⣶⣦⣤⣄⡀        $(NC)"
 	@echo "$(IRed)        ⢀⣴⣿⡿⠛⠉⠙⠛⠛⠛⠛⠻⢿⣿⣷⣤⡀     $(NC)"
 	@echo "$(IRed)        ⣼⣿⠋       ⢀⣀⣀⠈⢻⣿⣿⡄    $(NC)"

@@ -34,7 +34,7 @@ int	ft_atoi_ps(const char *str)
 	if (inturn > INT_MAX || inturn < INT_MIN)
 	{
 		write(2, "Error\n", 7);
-		exit (1);
+		exit (FAILURE);
 	}
 	return (inturn * neg);
 }
@@ -44,14 +44,14 @@ void	argchecker(char **argv, int argc)
 	int	i;
 
 	if (argc < 2)
-		exit (1);
+		exit (FAILURE);
 	i = 1;
 	while (argv[i])
 	{
 		if (checkint(argv[i]) == 1)
 		{
 			write(2, "Error\n", 7);
-			exit (1);
+			exit (FAILURE);
 		}
 		ft_atoi_ps(argv[i]);
 		i++;
@@ -91,7 +91,7 @@ void	checkdouble(t_stack *stack)
 			{
 				ft_stackclear(start);
 				write(2, "Error\n", 7);
-				exit (1);
+				exit (FAILURE);
 			}
 			tmp = tmp->next;
 		}
