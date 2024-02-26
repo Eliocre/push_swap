@@ -6,7 +6,7 @@
 /*   By: eandre <eandre@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:32:26 by eandre            #+#    #+#             */
-/*   Updated: 2024/02/13 19:04:35 by eandre           ###   ########.fr       */
+/*   Updated: 2024/02/26 17:15:13 by eandre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,10 @@ int	main(int argc, char **argv)
 {
 	t_stack	*lsta;
 	t_stack	*lstb;
+	char	**oui;
 
-	argchecker(argv, argc);
-	lsta = stack_init(argv);
+	oui = argchecker(argv, argc);
+	lsta = stack_init(oui);
 	lstb = NULL;
 	push_swap(&lsta, &lstb);
 	ft_stackclear(&lsta);

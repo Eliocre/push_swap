@@ -1,35 +1,58 @@
 
 NAME = push_swap
+BONUS = checker
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3
 
 OBJS_DIR = .obj/
+OBJS_BONUS_DIR = $(OBJS_DIR)checker/
 SRC_DIR = src/
 LIBFT_DIR = $(SRC_DIR)libft/
 PS_DIR = $(SRC_DIR)push_swap/
+CHECKER_DIR = $(SRC_DIR)checker/
 
 SRCS = push_swap.c arg_checker.c stack_free.c stack_utils.c swap.c rotate.c push.c \
 		reverse_rotate.c find.c get_cheapest.c sort.c init.c stack_a.c stack_b.c \
 		moves.c
+
+SRCS_BONUS = checker.c 
+
 HEADERS = ./src/libft/include/libft.h ./src/libft/include/ft_printf.h \
-		./src/libft/include/get_next_line.h include/push_swap.h\
+		./src/libft/include/get_next_line.h include/push_swap.h \
+
+HEADERS_BONUS = ./src/libft/include/libft.h ./src/libft/include/ft_printf.h \
+		./src/libft/include/get_next_line.h include/push_swap.h include/checker.h \
 
 OBJS = $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
+
+OBJS_BONUS = $(addprefix $(OBJS_BONUS_DIR), $(SRCS_BONUS:.c=.o))
 
 .SILENT : 
 
 all : libft obj $(NAME)
 
+bonus : libft obj obj_bonus $(BONUS)
+
 obj : 
 	@mkdir -p $(OBJS_DIR)
+
+obj_bonus :
+	@mkdir -p $(OBJS_BONUS_DIR)
 
 libft : 
 	@make --no-print-directory -C $(LIBFT_DIR)	
 
+$(BONUS) : $(OBJS_BONUS)
+	@echo "$(Red)Check de la norme :${NC}"
+# @norminette $(CHECKER_DIR) $(HEADERS)
+	@echo "$(Red)Compilation du checker ...${NC}"
+	$(CC) $^ $(CFLAGS) $(LIBFT_DIR)libft.a -o $(BONUS) && sleep 0.3
+	@echo "$(Green)\r------Compilation finie !-------${NC}" 
+
 $(NAME) : $(OBJS)
 	@echo "$(Red)Check de la norme :${NC}"
-	@norminette.exe $(SRC_DIR) $(HEADERS)
+	@norminette $(LIBFT_DIR) $(PS_DIR) $(HEADERS)
 	@echo "$(Red)Compilation de push_swap ...${NC}"
 	$(CC) $^ $(CFLAGS) $(LIBFT_DIR)libft.a -o $(NAME) && sleep 0.3
 	@echo "$(Green)\r------Compilation finie !-------${NC}" 
@@ -57,6 +80,9 @@ sus:
 $(OBJS_DIR)%.o : $(PS_DIR)%.c $(HEADERS) Makefile $(LIBFT_DIR)Makefile
 	$(CC) $(CFLAGS) -c $< -o $@
 
+$(OBJS_BONUS_DIR)%.o : $(CHECKER_DIR)%.c $(HEADERS_BONUS) Makefile $(LIBFT_DIR)Makefile
+	$(CC) $(CFLAGS) -c $< -o $@
+
 clean :
 	@cd $(LIBFT_DIR) && $(MAKE) --no-print-directory clean
 	@rm -rf $(OBJS_DIR)
@@ -68,7 +94,7 @@ fclean :
 re : fclean
 	$(MAKE) all
 
-.PHONY : all clean fclean re obj sus libft
+.PHONY : all clean fclean re obj obj_bonus sus libft bonus
 
 # COLORS =======================================================================
 

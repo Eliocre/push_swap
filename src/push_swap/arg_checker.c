@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   arg_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eandre <eandre@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:34:18 by eandre            #+#    #+#             */
-/*   Updated: 2024/02/13 15:33:23 by eandre           ###   ########.fr       */
+/*   Updated: 2024/02/26 18:08:43 by eandre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,8 @@ int	ft_atoi_ps(const char *str)
 	return (inturn * neg);
 }
 
-void	argchecker(char **argv, int argc)
+void	check_int_min_max(char **argv, int i)
 {
-	int	i;
-
-	if (argc < 2)
-		exit (FAILURE);
-	i = 1;
 	while (argv[i])
 	{
 		if (checkint(argv[i]) == 1)
@@ -56,6 +51,26 @@ void	argchecker(char **argv, int argc)
 		ft_atoi_ps(argv[i]);
 		i++;
 	}
+}
+
+char	**argchecker(char **argv, int argc)
+{
+	char	**oui;
+
+	if (argc < 2)
+		exit (FAILURE);
+	oui = NULL;
+	if (argc == 2 && checkint(argv[1]) == 1)
+	{
+		oui = ft_split(argv[1], ' ');
+		check_int_min_max(oui, 0);
+	}
+	else
+		check_int_min_max(argv, 1);
+	if (oui == NULL)
+		return (argv);
+	else
+		return (oui);
 }
 
 int	checkint(char *argv)

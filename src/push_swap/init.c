@@ -6,7 +6,7 @@
 /*   By: eandre <eandre@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 22:35:57 by eandre            #+#    #+#             */
-/*   Updated: 2024/02/22 22:36:15 by eandre           ###   ########.fr       */
+/*   Updated: 2024/02/26 17:46:07 by eandre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ t_stack	*stack_init(char **argv)
 	t_stack	*stack;
 	int		i;
 
-	i = 1;
+	i = 0;
+	if (checkint(argv[0]) == 1)
+		i = 1;
 	return_v = NULL;
 	while (argv[i])
 	{
