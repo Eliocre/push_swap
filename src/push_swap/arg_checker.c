@@ -6,7 +6,7 @@
 /*   By: eandre <eandre@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:34:18 by eandre            #+#    #+#             */
-/*   Updated: 2024/02/27 14:12:18 by eandre           ###   ########.fr       */
+/*   Updated: 2024/02/27 14:19:33 by eandre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char	**argchecker(char **argv, int argc)
 	char	**oui;
 
 	if (argc < 2)
-		exit (FAILURE);
+		exit (SUCCESS);
 	oui = NULL;
 	if (argc == 2 && checkint(argv[1]) == 1)
 	{
