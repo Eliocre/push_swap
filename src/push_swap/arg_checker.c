@@ -12,7 +12,7 @@
 
 #include "../../include/push_swap.h"
 
-int	ft_atoi_ps(const char *str)
+int	ft_atoi_ps(char **strs, int j, int id)
 {
 	long int	i;
 	long int	inturn;
@@ -21,34 +21,41 @@ int	ft_atoi_ps(const char *str)
 	i = 0;
 	neg = 1;
 	inturn = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
+	while ((strs[j][i] >= 9 && strs[j][i] <= 13) || strs[j][i] == ' ')
 		i++;
-	if (str[i] && (str[i] == '-' || str[i] == '+'))
+	if (strs[j][i] && (strs[j][i] == '-' || strs[j][i] == '+'))
 	{
-		if (str[i] == '-')
+		if (strs[j][i] == '-')
 			neg *= -1;
 		i++;
 	}
-	while (str[i] && str[i] >= '0' && str[i] <= '9')
-		inturn = inturn * 10 + str[i++] - 48;
+	while (strs[j][i] && strs[j][i] >= '0' && strs[j][i] <= '9')
+		inturn = inturn * 10 + strs[j][i++] - 48;
 	if (inturn > INT_MAX || inturn < INT_MIN)
 	{
 		write(2, "Error\n", 7);
+		if (id == 0)
+			free_strs(strs);
 		exit (FAILURE);
 	}
 	return (inturn * neg);
 }
 
-void	check_int_min_max(char **argv, int i)
+void	check_int_min_max(char **argv, int i, int id)
 {
 	while (argv[i])
 	{
 		if (checkint(argv[i]) == 1)
 		{
 			write(2, "Error\n", 7);
+			if (id == 0)
+				free_strs(argv);
 			exit (FAILURE);
 		}
-		ft_atoi_ps(argv[i]);
+		if (id == 0)
+			ft_atoi_ps(argv, i, 0);
+		else
+			ft_atoi_ps(argv, i, 1);
 		i++;
 	}
 }
@@ -63,14 +70,15 @@ char	**argchecker(char **argv, int argc)
 	if (argc == 2 && checkint(argv[1]) == 1)
 	{
 		oui = ft_split(argv[1], ' ');
-		check_int_min_max(oui, 0);
+		if (oui == NULL)
+			exit (FAILURE);
+		check_int_min_max(oui, 0, 0);
 	}
 	else
-		check_int_min_max(argv, 1);
+		check_int_min_max(argv, 1, 1);
 	if (oui == NULL)
-		return (argv);
-	else
-		return (oui);
+		return (NULL);
+	return (oui);
 }
 
 int	checkint(char *argv)
@@ -91,7 +99,7 @@ int	checkint(char *argv)
 	return (TRUE);
 }
 
-void	checkdouble(t_stack *stack)
+void	checkdouble(t_stack *stack, char **argv)
 {
 	t_stack	*tmp;
 	t_stack	**start;
@@ -106,6 +114,8 @@ void	checkdouble(t_stack *stack)
 			{
 				ft_stackclear(start);
 				write(2, "Error\n", 7);
+				if (argv != NULL)
+					free_strs(argv);
 				exit (FAILURE);
 			}
 			tmp = tmp->next;

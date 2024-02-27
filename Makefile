@@ -12,11 +12,13 @@ LIBFT_DIR = $(SRC_DIR)libft/
 PS_DIR = $(SRC_DIR)push_swap/
 CHECKER_DIR = $(SRC_DIR)checker/
 
-SRCS = push_swap.c arg_checker.c stack_free.c stack_utils.c swap.c rotate.c push.c \
+PSSRC = push_swap.c 
+
+SRCS = arg_checker.c free_utils.c stack_utils.c swap.c rotate.c push.c \
 		reverse_rotate.c find.c get_cheapest.c sort.c init.c stack_a.c stack_b.c \
 		moves.c
 
-SRCS_BONUS = checker.c 
+SRCS_BONUS = checker.c check_moves.c
 
 HEADERS = ./src/libft/include/libft.h ./src/libft/include/ft_printf.h \
 		./src/libft/include/get_next_line.h include/push_swap.h \
@@ -24,6 +26,7 @@ HEADERS = ./src/libft/include/libft.h ./src/libft/include/ft_printf.h \
 HEADERS_BONUS = ./src/libft/include/libft.h ./src/libft/include/ft_printf.h \
 		./src/libft/include/get_next_line.h include/push_swap.h include/checker.h \
 
+OBJPS = $(addprefix $(OBJS_DIR), $(PSSRC:.c=.o))
 OBJS = $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
 
 OBJS_BONUS = $(addprefix $(OBJS_BONUS_DIR), $(SRCS_BONUS:.c=.o))
@@ -43,16 +46,16 @@ obj_bonus :
 libft : 
 	@make --no-print-directory -C $(LIBFT_DIR)	
 
-$(BONUS) : $(OBJS_BONUS)
+$(BONUS) : $(OBJS) $(OBJS_BONUS)
 	@echo "$(Red)Check de la norme :${NC}"
 # @norminette $(CHECKER_DIR) $(HEADERS)
 	@echo "$(Red)Compilation du checker ...${NC}"
 	$(CC) $^ $(CFLAGS) $(LIBFT_DIR)libft.a -o $(BONUS) && sleep 0.3
 	@echo "$(Green)\r------Compilation finie !-------${NC}" 
 
-$(NAME) : $(OBJS)
+$(NAME) : $(OBJS) $(OBJPS)
 	@echo "$(Red)Check de la norme :${NC}"
-	@norminette $(LIBFT_DIR) $(PS_DIR) $(HEADERS)
+# @norminette $(LIBFT_DIR) $(PS_DIR) $(HEADERS)
 	@echo "$(Red)Compilation de push_swap ...${NC}"
 	$(CC) $^ $(CFLAGS) $(LIBFT_DIR)libft.a -o $(NAME) && sleep 0.3
 	@echo "$(Green)\r------Compilation finie !-------${NC}" 
@@ -89,7 +92,7 @@ clean :
 
 fclean :
 	cd $(LIBFT_DIR) && $(MAKE) --no-print-directory fclean
-	rm -rf $(OBJS_DIR) $(NAME)
+	rm -rf $(OBJS_DIR) $(NAME) $(BONUS)
 
 re : fclean
 	$(MAKE) all

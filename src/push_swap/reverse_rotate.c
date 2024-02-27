@@ -19,7 +19,7 @@ static t_stack	*ft_stackbeforelast(t_stack *stack)
 	return (stack);
 }
 
-static void	reverse_rotate_(t_stack **lst)
+void	reverse_rotate_(t_stack **lst)
 {
 	t_stack	*last;
 	t_stack	*beforelast;

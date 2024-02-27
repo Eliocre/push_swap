@@ -12,19 +12,17 @@
 
 #include "../../include/push_swap.h"
 
-t_stack	*stack_init(char **argv)
+t_stack	*stack_init(char **argv, int id)
 {
 	t_stack	*return_v;
 	t_stack	*stack;
 	int		i;
 
-	i = 0;
-	if (checkint(argv[0]) == 1)
-		i = 1;
+	i = checkint(argv[0]);
 	return_v = NULL;
 	while (argv[i])
 	{
-		stack = ft_stacknew(atoi(argv[i]));
+		stack = ft_stacknew(atoi(argv[i++]));
 		if (stack == NULL)
 		{
 			if (return_v != NULL)
@@ -35,9 +33,11 @@ t_stack	*stack_init(char **argv)
 			ft_stackadd_back(&return_v, stack);
 		else
 			return_v = stack;
-		i++;
 	}
-	checkdouble(return_v);
+	if (id == 0)
+		checkdouble(return_v, argv);
+	else
+		checkdouble(return_v, NULL);
 	return (return_v);
 }
 

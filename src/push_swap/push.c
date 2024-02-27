@@ -6,13 +6,13 @@
 /*   By: eandre <eandre@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 19:06:51 by eandre            #+#    #+#             */
-/*   Updated: 2024/02/08 20:36:24 by eandre           ###   ########.fr       */
+/*   Updated: 2024/02/27 00:33:59 by eandre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-static void	push_(t_stack **src, t_stack **dest)
+void	push_(t_stack **src, t_stack **dest)
 {
 	t_stack	*tmp;
 

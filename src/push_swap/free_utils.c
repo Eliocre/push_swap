@@ -1,45 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eandre <eandre@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 18:55:42 by eandre            #+#    #+#             */
-/*   Updated: 2024/02/27 00:34:09 by eandre           ###   ########.fr       */
+/*   Created: 2024/02/08 18:36:44 by eandre            #+#    #+#             */
+/*   Updated: 2024/02/26 23:38:15 by eandre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-void	rotate_(t_stack **lst)
+void	free_strs(char **strs)
 {
-	t_stack	*tmp;
+	int	i;
 
-	if (*lst && (*lst)->next)
+	i = 0;
+	while (strs[i])
 	{
-		tmp = *lst;
-		*lst = (*lst)->next;
-		tmp->next = NULL;
-		ft_stackadd_back(lst, tmp);
+		free(strs[i]);
+		i++;
 	}
+	free(strs);
 }
 
-void	rotate_a(t_stack **lsta)
+void	ft_stackclear(t_stack **stack)
 {
-	rotate_(lsta);
-	ft_printf("ra\n");
-}
+	t_stack	*prev;
 
-void	rotate_b(t_stack **lstb)
-{
-	rotate_(lstb);
-	ft_printf("rb\n");
-}
-
-void	rotate_ab(t_stack **lsta, t_stack **lstb)
-{
-	rotate_(lsta);
-	rotate_(lstb);
-	ft_printf("rr\n");
+	prev = *stack;
+	if (!(*stack))
+		return ;
+	while (*stack)
+	{
+		prev = *stack;
+		*stack = (*stack)->next;
+		free(prev);
+	}
+	*stack = NULL;
 }

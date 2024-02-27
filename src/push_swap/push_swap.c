@@ -47,7 +47,13 @@ int	main(int argc, char **argv)
 	char	**oui;
 
 	oui = argchecker(argv, argc);
-	lsta = stack_init(oui);
+	if (oui == NULL)
+		lsta = stack_init(argv, 1);
+	else
+	{
+		lsta = stack_init(oui, 0);
+		free_strs(oui);
+	}
 	lstb = NULL;
 	push_swap(&lsta, &lstb);
 	ft_stackclear(&lsta);

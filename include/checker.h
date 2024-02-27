@@ -14,6 +14,10 @@
 # define CHECKER_H
 # include "push_swap.h"
 
-
+void	checkchar(t_stack **lsta, t_stack **lstb, char *gnl);
+void	push_(t_stack **src, t_stack **dest);
+void	reverse_rotate_(t_stack **lst);
+void	rotate_(t_stack **lst);
+void	swap_(t_stack **lst);
 
 #endif
