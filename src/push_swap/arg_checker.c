@@ -6,7 +6,7 @@
 /*   By: eandre <eandre@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:34:18 by eandre            #+#    #+#             */
-/*   Updated: 2024/02/26 18:08:43 by eandre           ###   ########.fr       */
+/*   Updated: 2024/02/27 14:12:18 by eandre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,12 +99,12 @@ int	checkint(char *argv)
 	return (TRUE);
 }
 
-void	checkdouble(t_stack *stack, char **argv)
+void	checkdouble(t_stack **start, char **argv)
 {
 	t_stack	*tmp;
-	t_stack	**start;
+	t_stack	*stack;
 
-	start = &stack;
+	stack = *start;
 	while (stack && stack->next)
 	{
 		tmp = stack->next;

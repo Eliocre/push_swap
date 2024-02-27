@@ -6,7 +6,7 @@
 /*   By: eandre <eandre@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 13:59:15 by eandre            #+#    #+#             */
-/*   Updated: 2024/02/27 13:36:56 by eandre           ###   ########.fr       */
+/*   Updated: 2024/02/27 14:10:02 by eandre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_moves
 	int	total;
 }	t_moves;
 
-void	checkdouble(t_stack *stack, char **argv);
+void	checkdouble(t_stack **stack, char **argv);
 int		checkint(char *argv);
 char	**argchecker(char **argv, int argc);
 t_moves	moves_init(void);

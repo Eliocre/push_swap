@@ -6,7 +6,7 @@
 /*   By: eandre <eandre@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 22:35:57 by eandre            #+#    #+#             */
-/*   Updated: 2024/02/26 17:46:07 by eandre           ###   ########.fr       */
+/*   Updated: 2024/02/27 14:10:25 by eandre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ t_stack	*stack_init(char **argv, int id)
 			return_v = stack;
 	}
 	if (id == 0)
-		checkdouble(return_v, argv);
+		checkdouble(&return_v, argv);
 	else
-		checkdouble(return_v, NULL);
+		checkdouble(&return_v, NULL);
 	return (return_v);
 }
 
