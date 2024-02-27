@@ -6,7 +6,7 @@
 /*   By: eandre <eandre@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 22:26:48 by eandre            #+#    #+#             */
-/*   Updated: 2024/02/22 23:34:54 by eandre           ###   ########.fr       */
+/*   Updated: 2024/02/27 13:36:46 by eandre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_moves *cheap)
 		if (tmp->content > max || tmp->content < min)
 			new_max_stack_b(lstb, moves, max);
 		else
-			new_num_in_stack_b(lstb, moves, tmp->content);
+			new_elem_stack_b(lstb, moves, tmp->content);
 		check_double_moves(moves);
 		check_total(moves, cheap, i);
 		tmp = tmp->next;

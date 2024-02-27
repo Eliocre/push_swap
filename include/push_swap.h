@@ -6,7 +6,7 @@
 /*   By: eandre <eandre@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 13:59:15 by eandre            #+#    #+#             */
-/*   Updated: 2024/02/26 17:16:04 by eandre           ###   ########.fr       */
+/*   Updated: 2024/02/27 13:36:56 by eandre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,18 @@ typedef struct s_moves
 	int	total;
 }	t_moves;
 
-void	checkdouble(t_stack *stack);
+void	checkdouble(t_stack *stack, char **argv);
 int		checkint(char *argv);
 char	**argchecker(char **argv, int argc);
 t_moves	moves_init(void);
-t_stack	*stack_init(char **argv);
+t_stack	*stack_init(char **argv, int id);
 t_stack	*ft_stacknew(int content);
 t_stack	*ft_stacklast(t_stack *stack);
 void	ft_stackadd_back(t_stack **stack, t_stack *new);
 void	ft_stackadd_front(t_stack **lst, t_stack *new);
 int		ft_stacksize(t_stack *stack);
 void	ft_stackclear(t_stack **stack);
+void	free_strs(char **strs);
 void	swap_a(t_stack **lsta);
 void	swap_b(t_stack **lstb);
 void	swap_ab(t_stack **lsta, t_stack **lstb);
@@ -85,7 +86,7 @@ void	new_min_stack_a(t_stack **lsta, t_stack **lstb,
 void	check_moves(t_stack **lsta, t_stack **lstb, t_moves *moves,
 			t_moves *cheap);
 void	new_max_stack_b(t_stack **lstb, t_moves *moves, int max);
-void	new_num_in_stack_b(t_stack **lstb, t_moves *moves, int num);
+void	new_elem_stack_b(t_stack **lstb, t_moves *moves, int num);
 void	put_in_order_a(t_stack **lsta, t_stack **lstb, t_moves *moves, int min);
 int		find_closest(t_stack **lst, int nbr, int id);
 void	do_moves(t_stack **lsta, t_stack **lstb, t_moves *moves, int id);

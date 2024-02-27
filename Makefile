@@ -48,14 +48,14 @@ libft :
 
 $(BONUS) : $(OBJS) $(OBJS_BONUS)
 	@echo "$(Red)Check de la norme :${NC}"
-# @norminette $(CHECKER_DIR) $(HEADERS)
+	@norminette $(SRC_DIR) $(HEADERS)
 	@echo "$(Red)Compilation du checker ...${NC}"
 	$(CC) $^ $(CFLAGS) $(LIBFT_DIR)libft.a -o $(BONUS) && sleep 0.3
 	@echo "$(Green)\r------Compilation finie !-------${NC}" 
 
 $(NAME) : $(OBJS) $(OBJPS)
 	@echo "$(Red)Check de la norme :${NC}"
-# @norminette $(LIBFT_DIR) $(PS_DIR) $(HEADERS)
+	@norminette $(LIBFT_DIR) $(PS_DIR) $(HEADERS)
 	@echo "$(Red)Compilation de push_swap ...${NC}"
 	$(CC) $^ $(CFLAGS) $(LIBFT_DIR)libft.a -o $(NAME) && sleep 0.3
 	@echo "$(Green)\r------Compilation finie !-------${NC}" 
